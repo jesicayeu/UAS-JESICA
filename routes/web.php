@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WisataController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [WisataController::class, 'index'])->name('dashboard');
+    Route::post('/dashboard/wisatas/store', [WisataController::class, 'store'])->name('wisatas.store');
+    Route::put('/dashboard/wisatas/{wisata}', [WisataController::class, 'update'])->name('wisatas.update'); // Define the update route
+    Route::delete('/dashboard/wisatas/{wisata}', [WisataController::class, 'destroy'])->name('wisatas.destroy');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

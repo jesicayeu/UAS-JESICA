@@ -22,6 +22,7 @@
     <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css"
         href="{{ asset('assets/css/bootstrap/css/bootstrap.min.css') }}">
@@ -153,16 +154,21 @@
                           <li class="user-profile header-notification">
                               <a href="#!" class="waves-effect waves-light">
                                   <img src="{{ asset( 'assets' )}}/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                  <span>John Doe</span>
+                                  <span>Jesica yeuyanan</span>
                                   <i class="ti-angle-down"></i>
                               </a>
                               <ul class="show-notification profile-notification">
                                   
-                                  <li class="waves-effect waves-light">
-                                      <a href="auth-normal-sign-in.html">
-                                          <i class="ti-layout-sidebar-left"></i> Logout
-                                      </a>
-                                  </li>
+                                  <!-- Add this within your HTML or Blade file -->
+                                <li class="waves-effect waves-light">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="ti-layout-sidebar-left"></i> Logout
+                                    </a>
+                                </li>
+
                               </ul>
                           </li>
                       </ul>
@@ -211,22 +217,36 @@
                               <div class="row align-items-center">
                                   <div class="col-md-8">
                                       <div class="page-header-title">
-                                          <h5 class="m-b-10">Dashboard</h5>
-                                          <p class="m-b-0">Welcome to Jesica Yeuyanan</p>
+                                          <h5 class="m-b-10">Daftar</h5>
+                                          <p class="m-b-0">Tempat-Tempat Wisata</p>
                                       </div>
                                   </div>
                                   <div class="col-md-4">
                                       <ul class="breadcrumb-title">
+                                          
                                           <li class="breadcrumb-item">
-                                              <a href="index.html"> <i class="fa fa-home"></i> </a>
-                                          </li>
-                                          <li class="breadcrumb-item"><a href="#!">Dashboard</a>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahModal">
+                                            Tambah Wisata
+                                            </button>
                                           </li>
                                       </ul>
                                   </div>
                               </div>
                           </div>
                       </div>
+
+                      <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        {{ $slot}}
+                    </div>
+                    <!-- Page body end -->
+                </div>
+        </div>
+    </div>
                       <!-- Page-header end -->
                         
                                             <!--  project and team member end -->
@@ -287,9 +307,7 @@
     <![endif]-->
     <!-- Warning Section Ends -->
 
-    <div id="pcoded" class="pcoded">
-        {{ $slot }}       
-    </div>
+   
     
     <!-- Required Jquery -->
     <script type="text/javascript" src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
@@ -306,6 +324,7 @@
 <!-- slimscroll js -->
 <script type="text/javascript" src="{{ asset('assets/js/SmoothScroll.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <!-- Chart js -->
 <script type="text/javascript" src="{{ asset('assets/js/chart.js/Chart.js') }}"></script>
 <!-- amchart js -->
